@@ -61,3 +61,25 @@ console.log(newN);
 let ns=[1,2,3,4,5,6];
 let even=ns.filter(n=>n%2===0);
 console.log(even);
+
+let nus=[5,12,3,18,33,22,1,2,12];
+let eve=nus.filter(nus=>nus>=10);
+console.log(eve);
+
+let boxes=[
+    {weight:2, lable:"легкая"},
+    {weight:5, lable:"нормалбноя"},
+    {weight:12, lable:"тяжелая"},
+    {weight:15, lable:"очень тяжелая"}
+];
+let heavyBox=boxes.find(box=>box.weight>10);
+console.log(heavyBox);
+
+let innerOlanets=["Меркурий","Венера","Земля"];
+let outerPlanets=["юпитер","сатурн","уран"];
+let allPlanets=innerOlanets.concat(outerPlanets);
+console.log(allPlanets);
+
+let worlds=["I","like","JS"];
+let sentensse=worlds.join(" ");
+console.log(sentensse);
