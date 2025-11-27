@@ -7,7 +7,8 @@ let toys=[
         shape:"шар",
         color:"желтый",
         size:"большой",
-        favorite:false
+        favorite:false,
+        image:"./public/shar_befer_redpaint.png"
     },
     {
         name:"ፍስድጅፍድ ክስህድክጅ አ ድፍልድስጅፍ",
@@ -17,7 +18,9 @@ let toys=[
         shape:"ችሽልችክቭ",
         color:"፤ትክንስድ",
         size:"ግልድክልፍክ",
-        favorite:true
+        favorite:true,
+        image:"./public/shar_befer_redpaint.png"
+
     },
     {
         name:"Шар стеклянный с блестками",
@@ -27,7 +30,8 @@ let toys=[
         shape:"шар",
         color:"прозрачный",
         size:"средний",
-        favorite:false
+        favorite:false,
+        image:"./public/shyshka_winter.png"
     },
     {
         name:"Сосулька из прозрачного стекла",
@@ -37,7 +41,8 @@ let toys=[
         shape:"шар",
         color:"отсутствует",
         size:"маленький",
-        favorite:false
+        favorite:false,
+        image:"./public/shyshka_white.png"
     },
     {
         name:"Фигурка ангела",
@@ -47,7 +52,8 @@ let toys=[
         shape:"шар",
         color:"синий",
         size:"большой",
-        favorite:false
+        favorite:false,
+        image:"./public/shar_winter2.png"
     },
     {
         name:"Колокольчик золотой",
@@ -58,7 +64,8 @@ let toys=[
         color:"золотой",
         size:"средний",
        
-        favorite:false
+        favorite:false,
+        image:"./public/shar_winter.png"
     },
     {
         name:"Санта-Клаус миниатюрный",
@@ -68,7 +75,8 @@ let toys=[
         shape:"шар",
         color:"красный",
         size:"маленький",
-        favorite:false
+        favorite:false,
+        image:"./public/shar_white.png"
     },
     {
         name:"Снежинка из дерева",
@@ -78,7 +86,8 @@ let toys=[
         shape:"снежинка",
         color:"белый",
         size:"большой",
-        favorite:false
+        favorite:false,
+        image:"./public/shar_winter2.png"
     },
     {
         name:"Шишка, покрытая «снегом»",
@@ -102,34 +111,31 @@ let toys=[
     }
 ];
 
+toys = toys.map((toy, index) => {
+    return {
+        ...toy,
+        id: index + 1,
+    };
+});
+console.log('updated toys:', toys);
+
 toys.forEach(toy=>
     {console.log(toy.name + " - " + toy.color + " - " + toy.shape + " - " + toy.count);}
     );
 
-let updateToys = toys.map(toy =>{
-     return{
-         ...toy,
-         count:toy.count + 1
-     };
-});
-console.log(updateToys);
 
+let trees = [
+    { id: 11, type: "green", size: "big", description: "Классическая зелёная ёлка" },
+    { id: 12, type: "snowy", size: "medium", description: "Ёлка в снегу" },
+    { id: 13, type: "green", size: "litlle", description: "пушистая елка" },
+    { id: 14, type: "snowy", size: "medium", description: "елка с обводкой" }
+  ];
 
-
-
-// let trees = [
-//     { id: 11, type: "green", size: "big", description: "Классическая зелёная ёлка" },
-//     { id: 12, type: "snowy", size: "medium", description: "Ёлка в снегу" },
-//     { id: 13, type: "green", size: "litlle", description: "пушистая елка" },
-//     { id: 14, type: "snowy", size: "medium", description: "елка с обводкой" }
-//   ];
-
-//   let garlands = [
-//     { id: 15, type: "white", length: "long", mode: "blink" },
-//     { id: 16, type: "multi", length: "short", mode: "static" },
-//     { id: 17, type: "white", length: "long", mode: "blink" },
-//     { id: 18, type: "multi", length: "short", mode: "static" }
-//   ];
+  let garlands = [
+    { id: 15, type: "white", length: "long", mode: "blink", image: "./public/garland_big.png" },
+    { id: 16, type: "multi", length: "medium", mode: "static", image: "./public/garland_medium.png"},
+    { id: 18, type: "multi", length: "short", mode: "static", image: "./public/garland_little.png"}
+  ];
 
 
 
@@ -159,4 +165,3 @@ let tree={
     }
 };
   
-ضصثقفغ
