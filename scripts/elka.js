@@ -8,7 +8,7 @@ let toys=[
         color:"желтый",
         size:"большой",
         favorite:false,
-        image:"./public/shar_befer_redpaint.png"
+        image:"./public/shar_befev_redpaint.png"
     },
     {
         name:"ፍስድጅፍድ ክስህድክጅ አ ድፍልድስጅፍ",
@@ -19,7 +19,7 @@ let toys=[
         color:"፤ትክንስድ",
         size:"ግልድክልፍክ",
         favorite:true,
-        image:"./public/shar_befer_redpaint.png"
+        image:"./public/kolokol_winter.png"
 
     },
     {
@@ -97,7 +97,8 @@ let toys=[
         shape:"шышковидная",
         color:"коричневая",
         size:"средний",
-        favorite:false
+        favorite:false,
+        image:"./public/shar_green.png"
     },
     {
         name:"Маленькие барабанчики",
@@ -107,7 +108,8 @@ let toys=[
         shape:"многогранныя",
         color:"красный",
         size:"маленький",
-        favorite:false
+        favorite:false,
+        image:"./public/kolechko.png"
     }
 ];
 
@@ -125,10 +127,10 @@ toys.forEach(toy=>
 
 
 let trees = [
-    { id: 11, type: "green", size: "big", description: "Классическая зелёная ёлка" },
-    { id: 12, type: "snowy", size: "medium", description: "Ёлка в снегу" },
-    { id: 13, type: "green", size: "litlle", description: "пушистая елка" },
-    { id: 14, type: "snowy", size: "medium", description: "елка с обводкой" }
+    { id: 11, type: "green", size: "big", description: "Классическая зелёная ёлка", image:"./public/tree_ne_pushistaya.png"},
+    { id: 12, type: "snowy", size: "medium", description: "Ёлка в снегу", image:"./public/tree_white.png" },
+    { id: 13, type: "green", size: "litlle", description: "пушистая елка", image:"./public/trr_pushistaya.png" },
+    { id: 14, type: "snowy", size: "medium", description: "елка с обводкой", image:"./public/trr_s_obvodkoy.png" }
   ];
 
   let garlands = [
@@ -165,3 +167,44 @@ let tree={
     }
 };
   
+const title=document.querySelector("h1");
+const appels=document.querySelectorAll("appel");
+
+// const toy=document.querySelectorAll(".toy");
+// console.log(toy.dataset.type);
+// console.log(toy.dataset.size);
+
+const toysGrid=document.querySelector(".toys-grid")
+
+toys.forEach((toy,index)=>{
+
+    const toyBox = document.createElement("div");
+
+    const img = document.createElement("img");
+    img.src = toy.image;
+    img.classList.add("toy");
+    img.draggable = true;
+    img.dataset.index = index;
+
+    
+    const countBox = document.createElement("div");
+    countBox.textContent = toy.count;
+    countBox.style.color = "white";
+    countBox.style.textAlign = "center";
+    countBox.style.fontSize = "14px";
+
+
+    toyBox.appendChild(img);
+    toyBox.appendChild(countBox);
+
+
+    toysGrid.appendChild(toyBox);
+
+    img.addEventListener("dragstart", e => {
+        if (toy.count === 0){
+            e.preventDefault();
+            return;
+        }
+        e.dataTransfer.setData("toy", index);
+    });
+});
