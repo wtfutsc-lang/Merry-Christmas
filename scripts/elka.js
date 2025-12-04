@@ -208,3 +208,136 @@ toys.forEach((toy,index)=>{
         e.dataTransfer.setData("toy", index);
     });
 });
+
+window.addEventListener("scroll", ()=>{
+    console.log("procrut");
+});
+
+let currentTree = {
+    type: "",
+    garland: "",
+    toys: [],
+  
+    setTree(newType) {
+      this.type = newType;
+    },
+  
+    setGarland(newGarland) {
+      this.garland = newGarland;
+    },
+  
+    addToy(toy) {
+      this.toys.push(toy);
+    },
+  
+    showInfo() {
+      console.log("Ёлка:", this.type);
+      console.log("Гирлянда:", this.garland);
+      console.log("Игрушки:", this.toys);
+    }
+  };
+  
+const treeArea=document.querySelector(".tree-area");
+treeArea.addEventListener("dragover", e => e.preventDefault());
+
+treeArea.addEventListener("drop", e =>{
+    e.preventDefault();
+    const rect=treeArea.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const y=e.clientY-rect.top;
+
+    if(e.dataTransfer.getData("toy") !== ""){
+        const toyIndex = e.dataTransfer.getData("toy");
+        const toy = toys[toyIndex];
+
+        if(toy.count>0){
+            toy.count-=1;
+            const xPos=x-40;
+            const yPos=y-40;
+
+            const img=document.createElement("img");
+            img.src=toy.image;
+            img.classList.add("toy-on-tree");
+
+            img.style.left=xPos+"px";
+            img.style.top=yPos+"px";
+
+            treeArea.appendChild(img);
+
+            currentTree.addToy(toy,xPos,yPos);
+
+            toysGrid.children[toyIndex].children[1].textContent=toy.count;
+            img.addEventListener("click", () => {
+                        img.remove();
+                        toy.count += 1;
+                        toysGrid.children[toyIndex].children[1].textContent = toy.count;
+                  
+                        currentTree.toys = currentTree.toys.filter(t => t.id !== toy.id);
+                      });
+        }
+    }
+});
+
+// const treeArea = document.querySelector(".tree-area");
+
+// treeArea.addEventListener("dragover", e => e.preventDefault());
+
+// treeArea.addEventListener("drop", e => {
+//   e.preventDefault();
+
+//   const rect = treeArea.getBoundingClientRect();
+//   const x = e.clientX - rect.left;
+//   const y = e.clientY - rect.top;
+
+//   if (e.dataTransfer.getData("toy") !== "") {
+//     const toyIndex = e.dataTransfer.getData("toy");
+//     const toy = toys[toyIndex];
+  
+//     if (toy.count > 0) {
+//       toy.count -= 1;
+  
+//       const xPos = x - 40;
+//       const yPos = y - 40;
+  
+//       const img = document.createElement("img");
+//       img.src = toy.image;
+//       img.classList.add("toy-on-tree");
+  
+//       img.style.left = xPos + "px";
+//       img.style.top = yPos + "px";
+  
+//       treeArea.appendChild(img);
+  
+//       currentTree.addToy(toy, xPos, yPos);
+//         toysGrid.children[toyIndex].children[1].textContent = toy.count;
+  
+//       img.addEventListener("click", () => {
+//         img.remove();
+//         toy.count += 1;
+//         toysGrid.children[toyIndex].children[1].textContent = toy.count;
+  
+//         currentTree.toys = currentTree.toys.filter(t => t.id !== toy.id);
+//       });
+
+//  }
+//   }
+  
+//   if (e.dataTransfer.getData("garland") !== "") {
+//     const gIndex = e.dataTransfer.getData("garland");
+//     const garland = garlands[gIndex];
+  
+//     currentTree.setGarland(garland.type);
+  
+//     const img = document.createElement("img");
+//     img.src = garland.image;
+//     img.classList.add("garland-on-tree");
+  
+//     img.style.left = (x - 140) + "px";
+//     img.style.top = (y - 20) + "px";
+  
+//     img.style.animationDelay = (Math.random() * 1.6) + "s";
+  
+//     treeArea.appendChild(img);
+//   }
+  
+// });
