@@ -23,11 +23,22 @@ body {
     cursor: pointer;
   
     transform: scale(1);                 
-    transition: transform 0.3s ease, all 0.3s ease;
+    transition: transform 0.3s ease, 
+                all 0.3s ease;
+  }
+  .tree-grid
+  {
+    display: flex;
+    flex-direction: row;
+  }
+  .peerv
+  {
+    width: 91.19999694824219;
+    height: 120;
   }
   .main-tree
   {
-    padding-left: 280px;
+    
   }
   .button:hover {
     background: rgba(255,255,255,0.25);
@@ -41,26 +52,44 @@ body {
     overflow: hidden;
     height: auto;
   }
+  .toys-grid
+  {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(2, auto);
+  }
   
   .left-panel, .right-panel {
+  
     background: rgba(0, 0, 0, 0.45);
     padding: 20px;
     overflow-y: auto;
   }
-
-  .toy{
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
+  .toy-on-tree {
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;  
+    z-index: 5;            
   }
-
-  .toys-grid{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  .garland-on-tree {
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 4;
+    animation: blink 1.6s infinite ease-in-out;
   }
-.toys-grid div{
-  min-width: 70px;
-
-}
+  .tree-area
+  {
+    position: relative;
+      display: flex;
+      justify-content: center;
+    position: relative;
+  }
+  
+  @keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.3; }
+  100% { opacity: 1; }
+  }

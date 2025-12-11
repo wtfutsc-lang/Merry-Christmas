@@ -83,3 +83,9 @@ console.log(allPlanets);
 let worlds=["I","like","JS"];
 let sentensse=worlds.join(" ");
 console.log(sentensse);
+
+async function load(){
+    const response=await fetch("/data");
+    const data=await response.json();
+    console.log(data);
+}
