@@ -367,14 +367,36 @@ function getResultCurrentTreeData(){
     return resultCurrentTreeData;
 }
 
-const saveTreeBtn=document.getElementById("save-tree-btn");
+const saveTreeBtn = document.getElementById("save-tree-btn");
 
-saveTreeBtn.addEventListener("click", () =>{
-    const resultCurrentTreeData= getResultCurrentTreeData();
-    console.log(resultCurrentTreeData);
+saveTreeBtn.addEventListener("click", () => {
+  const resultCurrentTreeData = getResultCurrentTreeData();
+  const resultCurrentTreeJSON = JSON.stringify(resultCurrentTreeData);
 
-    const resultCurrentTreeJSON=JSON.stringify(resultCurrentTreeData);
-    console.log(resultCurrentTreeJSON);
+  localStorage.setItem("savedTree", resultCurrentTreeJSON);
+  alert("Ёлка сохранена (в браузере)");
+
+  fetch("/save-tree", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: resultCurrentTreeJSON
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Ошибка при сохранении ёлки");
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Ответ сервера:", data);
+      console.log("Ёлка сохранена ");
+    })
+    .catch(error => {
+      console.error("Ошибка:", error);
+      console.error("Не удалось сохранить ёлку");
+    });
 });
 // const treeArea = document.querySelector(".tree-area");
 
