@@ -68,6 +68,55 @@
      }
  }
 
- const nollan= new Hum('mama',"nolana")
- console.log( nollan.firstName);
- console.log( nollan.lastName);
+ 
+
+ class Notification{
+     send(){
+         console.log("sending notification");
+     }
+ }
+ const not= new Notification(); 
+ not.send();
+
+ class EmailNotification extends Notification{
+     send(){
+        console.log("sending email");
+     }
+ }
+ class YandexNotification extends Notification{
+    send(){
+       console.log("sending yandex");
+    }
+}
+const noti= new EmailNotification(); 
+ noti.send();
+ 
+ const notik= new YandexNotification(); 
+ notik.send();
+
+
+let no=[not,noti,notik];
+ no.forEach(k =>k.send());
+
+ localStorage.setItem("theme","dark");
+ const theme=localStorage.getItem("theme");
+ console.log(theme);
+ localStorage.clear();
+
+ sessionStorage.setItem("step","2");
+ const step=sessionStorage.getItem("step");
+ console.log(step);
+ sessionStorage.clear();
+
+ const data={level:3};
+ localStorage.setItem("game", JSON.stringify(data));
+ const game = JSON.parse(localStorage.getItem("game"));
+ console.log(game);
+ 
+ localStorage.setItem("halo","hello");
+
+ const dota={score:10};
+ localStorage.setItem("scre", JSON.stringify(dota));
+
+ const dota2={score:10};
+ sessionStorage.setItem("scre", JSON.stringify(dota2));
